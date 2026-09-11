@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de Administración — SirinGo</title>
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=3">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="SirinGo" class="logo-img">
+      Sirin<span class="logo-go">Go</span>
+    </a>
+    <div class="nav-derecha">
+      <div class="nav-sesion" data-zona-sesion></div>
+    </div>
+  </nav>
+</header>
+
+<div class="admin-layout">
+
+  <aside class="admin-sidebar" id="adminSidebar">
+    <h2>Panel de Administración</h2>
+    <a href="#" data-seccion="dashboard" class="activo">📊 Dashboard</a>
+    <a href="#" data-seccion="productos">🛍️ Productos</a>
+    <a href="#" data-seccion="rubros">🗂️ Categorías</a>
+    <a href="#" data-seccion="marcas">🏷️ Marcas</a>
+    <a href="#" data-seccion="usuarios">👥 Usuarios</a>
+    <a href="#" data-seccion="clientes">🖼️ Clientes</a>
+    <a href="#" data-seccion="consultas">✉️ Consultas <span class="badge-contador" id="badgeConsultasPendientes" hidden>0</span></a>
+    <a href="#" data-seccion="pedidos">🧾 Pedidos <span class="badge-contador" id="badgePedidosPendientes" hidden>0</span></a>
+    <a href="index.html">🏠 Volver al sitio</a>
+  </aside>
+
+  <div class="admin-content">
+
+    <div class="admin-topbar">
+      <button class="toggle-sidebar" id="toggleSidebar">☰ Menú</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section class="admin-seccion activa" id="seccion-dashboard">
+      <div class="seccion-header" style="margin-bottom:24px;">
+        <h2>Dashboard</h2>
+        <p>Resumen general de la actividad de SirinGo.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><span>Total de productos</span><strong id="statProductos">0</strong></div>
+        <div class="stat-card"><span>Total de categorías</span><strong id="statRubros">0</strong></div>
+        <div class="stat-card"><span>Total de marcas</span><strong id="statMarcas">0</strong></div>
+        <div class="stat-card"><span>Total de usuarios</span><strong id="statUsuarios">0</strong></div>
+        <div class="stat-card"><span>Stock total</span><strong id="statStockTotal">0</strong></div>
+      </div>
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section class="admin-seccion" id="seccion-productos">
+      <div class="panel-tabla">
+        <div class="panel-tabla-header">
+          <h2 style="margin:0; font-size:1.15rem;">Gestión de productos</h2>
+          <button class="btn btn-primary btn-sm" id="btnNuevoProducto">+ Agregar producto</button>
+        </div>
+        <table>
+          <thead><tr><th>Producto</th><th>Categoría</th><th>Marca</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead>
+          <tbody id="tablaProductos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RUBROS / CATEGORÍAS -->
+    <section class="admin-seccion" id="seccion-rubros">
+      <div class="panel-tabla">
+        <div class="panel-tabla-header">
+          <h2 style="margin:0; font-size:1.15rem;">Gestión de categorías</h2>
+          <button class="btn btn-primary btn-sm" id="btnNuevoRubro">+ Nueva categoría</button>
+        </div>
+        <table>
+          <thead><tr><th>Nombre</th><th>Productos asociados</th><th>Acciones</th></tr></thead>
+          <tbody id="tablaRubros"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MARCAS -->
+    <section class="admin-seccion" id="seccion-marcas">
+      <div class="panel-tabla">
+        <div class="panel-tabla-header">
+          <h2 style="margin:0; font-size:1.15rem;">Gestión de marcas</h2>
+          <button class="btn btn-primary btn-sm" id="btnNuevaMarca">+ Nueva marca</button>
+        </div>
+        <table>
+          <thead><tr><th>Nombre</th><th>Productos asociados</th><th>Acciones</th></tr></thead>
+          <tbody id="tablaMarcas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- USUARIOS -->
+    <section class="admin-seccion" id="seccion-usuarios">
+      <div class="panel-tabla">
+        <div class="panel-tabla-header">
+          <h2 style="margin:0; font-size:1.15rem;">Usuarios registrados</h2>
+        </div>
+        <table>
+          <thead><tr><th>Nombre</th><th>Email</th><th>Rol</th></tr></thead>
+          <tbody id="tablaUsuarios"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CLIENTES SATISFECHOS (carrusel del inicio) -->
+    <section class="admin-seccion" id="seccion-clientes">
+      <div class="panel-tabla">
+        <div class="panel-tabla-header">
+          <h2 style="margin:0; font-size:1.15rem;">Fotos de clientes satisfechos</h2>
+        </div>
+        <p class="ayuda-campo" style="margin-top:-10px;">Estas fotos se muestran en el inicio, en el carrusel "Quienes ya confiaron en nosotros", debajo del catálogo. Formatos: JPG, PNG o WEBP — hasta 5 MB cada una.</p>
+        <div class="mensaje-form" id="mensajeClientes" hidden></div>
+        <div class="galeria-admin-grid" id="clientesAdminGrid"></div>
+        <div class="campo-grupo" style="max-width:340px;">
+          <label for="inputFotoCliente">Agregar foto</label>
+          <input class="campo-input" type="file" id="inputFotoCliente" accept="image/jpeg,image/jpg,image/png,image/webp">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSULTAS -->
+    <section class="admin-seccion" id="seccion-consultas">
+      <div class="panel-tabla">
+        <div class="panel-tabla-header">
+          <h2 style="margin:0; font-size:1.15rem;">Consultas recibidas</h2>
+        </div>
+        <table>
+          <thead><tr><th>Fecha</th><th>Nombre</th><th>Email</th><th>Asunto</th><th>Mensaje</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tablaConsultas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PEDIDOS -->
+    <section class="admin-seccion" id="seccion-pedidos">
+      <div class="panel-tabla">
+        <div class="panel-tabla-header">
+          <h2 style="margin:0; font-size:1.15rem;">Pedidos</h2>
+        </div>
+        <p class="ayuda-campo" style="margin-top:-10px;">Los pedidos hay que confirmarlos a mano acá: cuando verifiques el comprobante de transferencia por WhatsApp, marcalo como "Pagado". Los pedidos hechos como invitado (sin cuenta) no aparecen acá — solo por WhatsApp.</p>
+        <table>
+          <thead><tr><th>Fecha</th><th>Pedido</th><th>Cliente</th><th>Entrega</th><th>Pago</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tablaPedidos"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- MODAL PRODUCTO -->
+<div class="modal-overlay" id="modalProducto" hidden>
+  <div class="modal-form-caja">
+    <h3 id="tituloModalProducto">Agregar producto</h3>
+    <div class="mensaje-form" id="mensajeProducto" hidden></div>
+    <form id="formProducto" novalidate>
+      <div class="campo-grupo">
+        <label for="inputProductoNombre">Nombre</label>
+        <input class="campo-input" type="text" id="inputProductoNombre" name="nombre" required>
+      </div>
+      <div class="campo-grupo">
+        <label for="inputProductoMarca">Marca</label>
+        <select class="campo-select" id="inputProductoMarca" name="marca_id" required style="width:100%;"></select>
+      </div>
+      <div class="campo-grupo">
+        <label>Categorías</label>
+        <small class="ayuda-campo" style="margin:0 0 6px;">Podés tildar más de una — funcionan como etiquetas.</small>
+        <div class="tags-selector" id="inputProductoCategorias"></div>
+      </div>
+      <div class="campo-grupo">
+        <label for="inputProductoDescripcion">Descripción</label>
+        <textarea class="campo-input" id="inputProductoDescripcion" name="descripcion" rows="3" required></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="inputProductoStock">Stock disponible</label>
+        <input class="campo-input" type="number" min="0" step="1" id="inputProductoStock" name="stock" value="0" required>
+        <small class="ayuda-campo">El precio no se carga acá: se define desde "🏷️ Opciones de compra" una vez que guardes el producto.</small>
+      </div>
+      <div class="campo-grupo">
+        <label>Colores disponibles (opcional)</label>
+        <div class="colores-admin-lista" id="coloresAdminLista"></div>
+        <div class="colores-admin-agregar">
+          <input type="color" id="inputColorHex" value="#8b5cf6" title="Elegir color">
+          <input class="campo-input" type="text" id="inputColorNombre" placeholder="Nombre del color (ej: Rojo)">
+          <button type="button" class="btn btn-outline btn-sm" id="btnAgregarColor">+ Agregar</button>
+        </div>
+      </div>
+      <div class="campo-grupo campo-checkbox">
+        <label class="checkbox-label">
+          <input type="checkbox" id="inputProductoEs2x1">
+          🔥 Marcar como promoción "2x1" (etiqueta llamativa en el catálogo)
+        </label>
+      </div>
+      <div class="campo-grupo">
+        <label for="inputProductoArchivoImagen">Imagen del producto</label>
+        <input class="campo-input" type="file" id="inputProductoArchivoImagen" name="imagenArchivo" accept="image/jpeg,image/jpg,image/png,image/webp">
+        <small class="ayuda-campo">Formatos permitidos: JPG, PNG o WEBP. Tamaño máximo: 5 MB.</small>
+        <input type="hidden" id="inputProductoImagenActual" name="imagenActual" value="">
+        <input type="hidden" id="inputProductoImagenEliminar" value="0">
+        <div class="preview-imagen-producto">
+          <img id="previewImagenProducto" src="" alt="Vista previa de la imagen" hidden>
+          <span id="previewImagenProductoVacio">Sin imagen seleccionada</span>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" id="btnQuitarImagenProducto" style="margin-top:8px;" hidden>🗑️ Quitar imagen</button>
+      </div>
+      <div class="modal-acciones">
+        <button type="button" class="btn btn-outline" id="btnCancelarProducto">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar producto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL GALERÍA DE IMÁGENES -->
+<div class="modal-overlay" id="modalGaleria" hidden>
+  <div class="modal-form-caja">
+    <h3>Galería de imágenes</h3>
+    <p class="ayuda-campo" style="margin-top:-6px;">Estas imágenes se muestran en la página de detalle del producto (además de la imagen principal). Formatos: JPG, PNG o WEBP — hasta 5 MB cada una.</p>
+    <div class="mensaje-form" id="mensajeGaleria" hidden></div>
+    <div class="galeria-admin-grid" id="galeriaAdminGrid"></div>
+    <div class="campo-grupo">
+      <label for="inputGaleriaArchivo">Agregar imagen</label>
+      <input class="campo-input" type="file" id="inputGaleriaArchivo" accept="image/jpeg,image/jpg,image/png,image/webp">
+    </div>
+    <div class="modal-acciones">
+      <button type="button" class="btn btn-primary" id="btnCerrarGaleria">Listo</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VIDEOS DEL PRODUCTO -->
+<div class="modal-overlay" id="modalVideos" hidden>
+  <div class="modal-form-caja">
+    <h3>Videos del producto</h3>
+    <p class="ayuda-campo" style="margin-top:-6px;">Estos videos se muestran en la página de detalle del producto, junto con las fotos. Formatos: MP4, WEBM o MOV — hasta 50 MB cada uno.</p>
+    <div class="mensaje-form" id="mensajeVideos" hidden></div>
+    <div class="galeria-admin-grid" id="videosAdminGrid"></div>
+    <div class="campo-grupo">
+      <label for="inputVideoArchivo">Agregar video</label>
+      <input class="campo-input" type="file" id="inputVideoArchivo" accept="video/mp4,video/webm,video/quicktime">
+    </div>
+    <div class="modal-acciones">
+      <button type="button" class="btn btn-primary" id="btnCerrarVideos">Listo</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL OPCIONES DE COMPRA -->
+<div class="modal-overlay" id="modalOpciones" hidden>
+  <div class="modal-form-caja">
+    <h3>Opciones de compra</h3>
+    <p class="ayuda-campo" style="margin-top:-6px;">Son las tarjetas que ve el comprador en la página del producto (por ejemplo "1 unidad", "Pack 3 meses"). Se recomienda cargar hasta 3.</p>
+    <div class="mensaje-form" id="mensajeOpciones" hidden></div>
+
+    <div id="listaOpcionesAdmin"></div>
+
+    <button type="button" class="btn btn-outline btn-block" id="btnNuevaOpcion" style="margin-top:14px;">+ Agregar opción de compra</button>
+
+    <form id="formOpcion" hidden style="margin-top:18px; border-top:1px solid var(--borde); padding-top:18px;">
+      <input type="hidden" id="inputOpcionId">
+      <div class="campo-fila">
+        <div class="campo-grupo">
+          <label for="inputOpcionTitulo">Título</label>
+          <input class="campo-input" type="text" id="inputOpcionTitulo" placeholder="Ej: Pack 3 meses" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="inputOpcionEtiqueta">Etiqueta (opcional)</label>
+          <input class="campo-input" type="text" id="inputOpcionEtiqueta" placeholder="Ej: Más elegido">
+        </div>
+      </div>
+      <div class="campo-grupo">
+        <label for="inputOpcionSubtitulo">Subtítulo (opcional)</label>
+        <input class="campo-input" type="text" id="inputOpcionSubtitulo" placeholder="Ej: Envío gratis + 3 cuotas sin interés">
+      </div>
+      <div class="campo-fila">
+        <div class="campo-grupo">
+          <label for="inputOpcionPrecio">Precio ($)</label>
+          <input class="campo-input" type="number" min="1" step="1" id="inputOpcionPrecio" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="inputOpcionPrecioAnterior">Precio anterior (opcional)</label>
+          <input class="campo-input" type="number" min="1" step="1" id="inputOpcionPrecioAnterior">
+        </div>
+      </div>
+      <div class="campo-grupo" style="flex-direction:row; align-items:center; gap:10px;">
+        <input type="checkbox" id="inputOpcionDestacada" style="width:auto;">
+        <label for="inputOpcionDestacada" style="margin:0;">Destacar esta opción (se resalta en la página del producto)</label>
+      </div>
+      <div class="modal-acciones">
+        <button type="button" class="btn btn-outline" id="btnCancelarOpcion">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar opción</button>
+      </div>
+    </form>
+
+    <div class="modal-acciones" id="accionesCerrarOpciones">
+      <button type="button" class="btn btn-outline" id="btnCerrarOpciones">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL RUBRO / CATEGORÍA -->
+<div class="modal-overlay" id="modalRubro" hidden>
+  <div class="modal-form-caja" style="max-width:420px;">
+    <h3 id="tituloModalRubro">Nueva categoría</h3>
+    <div class="mensaje-form" id="mensajeRubro" hidden></div>
+    <form id="formRubro" novalidate>
+      <div class="campo-grupo">
+        <label for="inputRubroNombre">Nombre de la categoría</label>
+        <input class="campo-input" type="text" id="inputRubroNombre" name="nombre" required>
+      </div>
+      <div class="modal-acciones">
+        <button type="button" class="btn btn-outline" id="btnCancelarRubro">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar categoría</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL MARCA -->
+<div class="modal-overlay" id="modalMarca" hidden>
+  <div class="modal-form-caja" style="max-width:420px;">
+    <h3 id="tituloModalMarca">Nueva marca</h3>
+    <div class="mensaje-form" id="mensajeMarca" hidden></div>
+    <form id="formMarca" novalidate>
+      <div class="campo-grupo">
+        <label for="inputMarcaNombre">Nombre de la marca</label>
+        <input class="campo-input" type="text" id="inputMarcaNombre" name="nombre" required>
+      </div>
+      <div class="modal-acciones">
+        <button type="button" class="btn btn-outline" id="btnCancelarMarca">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar marca</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL CONFIRMACIÓN -->
+<div class="modal-overlay" id="modalConfirmacion" hidden>
+  <div class="modal-confirmacion-caja">
+    <h3>Confirmar acción</h3>
+    <p id="textoConfirmacion"></p>
+    <div class="modal-confirmacion-acciones">
+      <button class="btn btn-outline" id="btnCancelarAccion">Cancelar</button>
+      <button class="btn btn-peligro" id="btnConfirmarAccion">Sí, eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

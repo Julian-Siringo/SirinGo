@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar compra — SirinGo</title>
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=3">
+</head>
+<body>
+
+<div class="cinta-anuncios">
+  <div class="cinta-anuncios-track"></div>
+</div>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="SirinGo" class="logo-img">
+      Sirin<span class="logo-go">Go</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#catalogo">Catálogo</a>
+      <a href="index.html#contacto">Contacto</a>
+      <div class="nav-sesion nav-sesion-movil" data-zona-sesion></div>
+    </div>
+    <div class="nav-derecha">
+      <div class="nav-sesion" data-zona-sesion></div>
+    </div>
+  </nav>
+</header>
+
+<main class="checkout-main">
+  <div class="contenedor">
+
+    <!-- ======================= PASO A: FORMULARIO DE COMPRA ======================= -->
+    <div id="checkoutFormulario">
+      <h1 class="checkout-titulo">Finalizar compra</h1>
+      <p class="subtitulo" id="checkoutSesionInfo" style="margin-bottom:28px;"></p>
+
+      <div class="checkout-grid">
+
+        <!-- columna izquierda: pasos -->
+        <div class="checkout-pasos">
+
+          <div class="mensaje-form" id="mensajeCheckout" hidden></div>
+
+          <form id="formCheckout" novalidate>
+
+            <!-- 1. Datos personales -->
+            <section class="paso-checkout">
+              <div class="paso-checkout-titulo"><span class="paso-checkout-numero">1</span> Datos personales</div>
+              <div class="campo-fila">
+                <div class="campo-grupo">
+                  <label for="ckNombre">Nombre y apellido</label>
+                  <input class="campo-input" type="text" id="ckNombre" required>
+                </div>
+                <div class="campo-grupo">
+                  <label for="ckTelefono">Teléfono</label>
+                  <input class="campo-input" type="tel" id="ckTelefono" placeholder="+54 9 ..." required>
+                </div>
+              </div>
+              <div class="campo-grupo">
+                <label for="ckEmail">Correo electrónico</label>
+                <input class="campo-input" type="email" id="ckEmail" required>
+              </div>
+            </section>
+
+            <!-- 2. Método de entrega -->
+            <section class="paso-checkout">
+              <div class="paso-checkout-titulo"><span class="paso-checkout-numero">2</span> Método de entrega</div>
+              <div class="opciones-tarjeta" style="margin-bottom:20px;">
+                <label class="opcion-tarjeta seleccionada" data-opcion-entrega="domicilio">
+                  <input type="radio" name="entrega" value="domicilio" checked>
+                  <span class="opcion-tarjeta-icono">🚚</span>
+                  <span class="opcion-tarjeta-textos">
+                    <strong>Envío a domicilio</strong>
+                    <span>Recibilo en la puerta de tu casa</span>
+                  </span>
+                </label>
+                <label class="opcion-tarjeta" data-opcion-entrega="retiro">
+                  <input type="radio" name="entrega" value="retiro">
+                  <span class="opcion-tarjeta-icono">🏬</span>
+                  <span class="opcion-tarjeta-textos">
+                    <strong>Retiro en el local</strong>
+                    <span>Sin costo de envío</span>
+                  </span>
+                </label>
+              </div>
+
+              <div id="bloqueDireccion">
+                <div class="campo-fila">
+                  <div class="campo-grupo">
+                    <label for="ckProvincia">Provincia</label>
+                    <select class="campo-select" id="ckProvincia" style="width:100%;">
+                      <option value="">Seleccioná una provincia</option>
+                      <option>Buenos Aires</option><option>CABA</option><option>Catamarca</option>
+                      <option>Chaco</option><option>Chubut</option><option>Córdoba</option>
+                      <option>Corrientes</option><option>Entre Ríos</option><option>Formosa</option>
+                      <option>Jujuy</option><option>La Pampa</option><option>La Rioja</option>
+                      <option>Mendoza</option><option>Misiones</option><option>Neuquén</option>
+                      <option>Río Negro</option><option>Salta</option><option>San Juan</option>
+                      <option>San Luis</option><option>Santa Cruz</option><option>Santa Fe</option>
+                      <option>Santiago del Estero</option><option>Tierra del Fuego</option><option>Tucumán</option>
+                    </select>
+                  </div>
+                  <div class="campo-grupo">
+                    <label for="ckCiudad">Ciudad</label>
+                    <input class="campo-input" type="text" id="ckCiudad">
+                  </div>
+                </div>
+                <div class="campo-fila">
+                  <div class="campo-grupo">
+                    <label for="ckCodigoPostal">Código postal</label>
+                    <input class="campo-input" type="text" id="ckCodigoPostal">
+                  </div>
+                  <div class="campo-grupo">
+                    <label for="ckCalle">Calle</label>
+                    <input class="campo-input" type="text" id="ckCalle">
+                  </div>
+                </div>
+                <div class="campo-fila">
+                  <div class="campo-grupo">
+                    <label for="ckNumero">Número</label>
+                    <input class="campo-input" type="text" id="ckNumero">
+                  </div>
+                  <div class="campo-grupo">
+                    <label for="ckPiso">Piso / depto (opcional)</label>
+                    <input class="campo-input" type="text" id="ckPiso">
+                  </div>
+                </div>
+                <div class="campo-grupo">
+                  <label for="ckReferencias">Referencias (opcional)</label>
+                  <input class="campo-input" type="text" id="ckReferencias">
+                </div>
+                <p class="campo-nota">El costo de envío se coordina con vos después de confirmar el pedido.</p>
+              </div>
+
+              <div id="bloqueRetiro" hidden>
+                <p class="campo-nota" style="margin-top:0;">Podés retirar tu pedido sin costo una vez que coordinemos el horario por WhatsApp.</p>
+              </div>
+            </section>
+
+          </form>
+        </div>
+
+        <!-- columna derecha: resumen del pedido -->
+        <aside class="resumen-pedido">
+          <h2>Resumen del pedido</h2>
+          <div id="resumenItems"></div>
+
+          <div class="resumen-cupon">
+            <input class="campo-input" type="text" id="ckCupon" placeholder="Cupón de descuento">
+            <button type="button" class="btn btn-outline btn-sm">Aplicar</button>
+          </div>
+
+          <div class="resumen-filas">
+            <div class="resumen-fila"><span>Subtotal</span><span id="resumenSubtotal">$0</span></div>
+            <div class="resumen-fila"><span>Envío</span><span>A coordinar</span></div>
+            <div class="resumen-fila total"><span>Total</span><span id="resumenTotal">$0</span></div>
+          </div>
+
+          <ul class="resumen-ventajas">
+            <li>🛡️ Compra 100% segura</li>
+            <li>🔒 Pagos protegidos</li>
+            <li>🔄 Cambios y devoluciones</li>
+            <li>🚚 Envíos a todo el país</li>
+          </ul>
+
+          <button type="button" class="btn btn-primary btn-block" id="btnSeguirCompra">Seguir con la compra</button>
+          <p class="checkout-legal">Al confirmar, aceptás nuestros términos y condiciones.</p>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- ======================= PASO B: PANTALLA DE PAGO ======================= -->
+    <div id="checkoutPago" hidden>
+      <div class="pago-panel">
+        <h1>¡Ya casi! Completá tu pago</h1>
+        <p class="subtitulo">Pedido <strong id="pagoNumeroPedido"></strong> · Transferencia bancaria</p>
+
+        <div class="pago-monto">
+          <div class="pago-monto-valor" id="pagoMonto">$0</div>
+          <div class="pago-monto-label">Importe total a transferir</div>
+        </div>
+
+        <div class="pago-datos">
+          <div class="pago-dato-fila">
+            <div><div class="pago-dato-etiqueta">Alias</div><div class="pago-dato-valor" id="pagoAlias"></div></div>
+            <button type="button" class="pago-dato-copiar" data-copiar="pagoAlias">COPIAR</button>
+          </div>
+          <div class="pago-dato-fila">
+            <div><div class="pago-dato-etiqueta">CVU/CBU</div><div class="pago-dato-valor" id="pagoCvu"></div></div>
+            <button type="button" class="pago-dato-copiar" data-copiar="pagoCvu">COPIAR</button>
+          </div>
+          <div class="pago-dato-fila">
+            <div><div class="pago-dato-etiqueta">Titular</div><div class="pago-dato-valor" id="pagoTitular"></div></div>
+          </div>
+          <div class="pago-dato-fila">
+            <div><div class="pago-dato-etiqueta">Número de pedido</div><div class="pago-dato-valor" id="pagoNumeroPedido2"></div></div>
+          </div>
+        </div>
+
+        <div class="pago-aviso">
+          <span>⚠️</span>
+          <span><strong>Importante:</strong> Después de realizar el pago, es obligatorio enviar el comprobante de transferencia por WhatsApp. Hasta que el comprobante no sea recibido y verificado, el pago no será acreditado.</span>
+        </div>
+
+        <div class="pago-acciones">
+          <a href="#" class="btn btn-block btn-whatsapp" id="btnEnviarComprobante">💬 Enviar comprobante por WhatsApp</a>
+        </div>
+
+        <div class="pago-nota" style="margin-top:22px;">
+          <span>❗</span>
+          <span>El importe mostrado corresponde únicamente al valor de los artículos seleccionados. Si tu compra requiere envío, el costo será coordinado y confirmado posteriormente a través de WhatsApp, donde también te brindaremos toda la información necesaria para finalizar el proceso.</span>
+        </div>
+
+        <div class="pago-acciones">
+          <button type="button" class="btn btn-primary btn-block" id="btnYaPague">Ya realicé el pago</button>
+          <a href="index.html" class="enlace-secundario" id="enlaceVolverMasTarde" style="margin-top:0;">Volver más tarde — mi pedido ya quedó registrado</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer" style="padding-top:0;">
+  <div class="contenedor footer-bottom">© 2026 SirinGo — Todo lo que buscás, en un solo lugar.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

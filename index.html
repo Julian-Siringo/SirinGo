@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SirinGo — Todo lo que buscás, en un solo lugar</title>
+<meta name="description" content="SirinGo: tienda online de productos variados, modernos y llamativos. Todo lo que buscás, en un solo lugar.">
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=3">
+</head>
+<body>
+
+<div class="cinta-anuncios">
+  <div class="cinta-anuncios-track"></div>
+</div>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="SirinGo" class="logo-img">
+      Sirin<span class="logo-go">Go</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#catalogo">Catálogo</a>
+      <a href="index.html#contacto">Contacto</a>
+      <div class="buscador-header buscador-movil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" id="buscadorHeaderMovil" placeholder="Buscar productos...">
+      </div>
+      <div class="nav-sesion nav-sesion-movil" data-zona-sesion></div>
+    </div>
+
+    <div class="nav-derecha">
+      <div class="buscador-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" id="buscadorHeader" placeholder="Buscar productos...">
+      </div>
+      <div class="nav-sesion" data-zona-sesion></div>
+      <button class="btn-icon-only carrito-boton" id="abrirCarrito" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="carrito-contador" id="carritoContador" hidden>0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="contenedor hero-grid">
+      <div>
+        <span class="hero-eyebrow">PRODUCTOS QUE TE CONECTAN</span>
+        <h1>Todo lo que buscás,<span class="degradado">en un solo lugar</span></h1>
+        <p class="hero-desc">Descubrí productos, ofertas y artículos seleccionados en un solo lugar. Tecnología, hogar, accesorios y mucho más, con envíos a todo el país.</p>
+        <div class="hero-acciones">
+          <a href="#catalogo" class="btn btn-primary">Explorar productos</a>
+          <a href="#catalogo" class="btn btn-secondary" id="btnVerOfertas">Ver ofertas</a>
+        </div>
+        <div class="hero-ventajas">
+          <span>Pago seguro</span>
+          <span>Envíos a todo el país</span>
+          <span>Atención por WhatsApp</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-visual-anillo a1"></div>
+        <div class="hero-visual-anillo a2"></div>
+        <div class="hero-visual-glow"></div>
+        <img src="images/logo.png" alt="" class="hero-visual-logo">
+        <div class="hero-visual-chip c1">🚚 Envío rápido</div>
+        <div class="hero-visual-chip c2">🔒 Compra segura</div>
+        <div class="hero-visual-chip c3">💬 Soporte 24/7</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRANJA DE CONFIANZA -->
+  <section class="franja-confianza">
+    <div class="contenedor">
+      <div class="franja-item"><strong>+500</strong><span>clientes activos</span></div>
+      <div class="franja-item"><strong>100%</strong><span>pagos seguros</span></div>
+      <div class="franja-item"><strong>24/7</strong><span>atención por WhatsApp</span></div>
+      <div class="franja-item"><strong>AR</strong><span>envíos a todo el país</span></div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <section class="seccion" id="catalogo">
+    <div class="contenedor">
+      <div class="seccion-header">
+        <span class="seccion-eyebrow">Catálogo completo</span>
+        <h2>Todo el catálogo</h2>
+        <p>Buscá, filtrá y encontrá el producto ideal en un solo lugar.</p>
+      </div>
+
+      <div class="chips-categoria" id="chipsCategoria"></div>
+
+      <div class="filtros-catalogo">
+        <input type="search" id="buscadorProductos" class="campo-input" placeholder="Buscar producto por nombre, categoría o marca...">
+        <select id="filtroRubro" class="campo-select"></select>
+        <select id="filtroMarca" class="campo-select"></select>
+        <select id="ordenProductos" class="campo-select">
+          <option value="relevancia">Ordenar por relevancia</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="nombre-asc">Nombre: A-Z</option>
+          <option value="nombre-desc">Nombre: Z-A</option>
+          <option value="ofertas">Ofertas primero</option>
+        </select>
+      </div>
+
+      <div class="resultado-catalogo">
+        <span id="contadorResultados"></span>
+      </div>
+
+      <div class="grid-productos" id="gridProductos"></div>
+      <div class="catalogo-vacio" id="catalogoVacio" hidden>
+        No encontramos productos con esos filtros. Probá con otra búsqueda.
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES SATISFECHOS -->
+  <section class="seccion seccion-clientes" id="clientesSatisfechos" hidden>
+    <div class="contenedor">
+      <div class="seccion-header seccion-header--centrada">
+        <h2>Quienes ya confiaron en nosotros</h2>
+        <p>Resultados reales con SirinGo</p>
+      </div>
+    </div>
+    <div class="cinta-clientes">
+      <div class="cinta-clientes-track" id="cintaClientesTrack"></div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="seccion" id="contacto">
+    <div class="contenedor grid-2">
+      <div>
+        <div class="seccion-header">
+          <span class="seccion-eyebrow">Estamos para ayudarte</span>
+          <h2>¿Tenés alguna consulta?</h2>
+          <p>Escribinos y te respondemos a la brevedad, o comunicate directamente por los siguientes medios.</p>
+        </div>
+        <div class="tarjeta-contacto-info">
+          <div class="item-contacto">
+            <div class="item-contacto-icono">💬</div>
+            <div><strong>WhatsApp</strong><a href="https://wa.me/5492236946601" target="_blank" rel="noopener"><span>+54 9 223 694 6601</span></a></div>
+          </div>
+          <div class="item-contacto">
+            <div class="item-contacto-icono">📷</div>
+            <div><strong>Instagram</strong><a href="https://www.instagram.com/siringo.desing?stkn=eTM2b3A2NzR1d2Vh" target="_blank" rel="noopener"><span>@siringo.desing</span></a></div>
+          </div>
+          <div class="item-contacto">
+            <div class="item-contacto-icono">✉️</div>
+            <div><strong>Email</strong><a href="mailto:hola@siringo.com.ar"><span>hola@siringo.com.ar</span></a></div>
+          </div>
+          <div class="item-contacto">
+            <div class="item-contacto-icono">📍</div>
+            <div><strong>Ubicación</strong><span>Mar del Plata, Buenos Aires, Argentina</span></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="panel-form" id="formContacto" novalidate>
+        <h1 style="font-size:1.3rem;">Envianos tu consulta</h1>
+        <div class="mensaje-form" id="mensajeContacto" hidden></div>
+        <div class="campo-grupo">
+          <label for="contactoNombre">Nombre</label>
+          <input class="campo-input" type="text" id="contactoNombre" name="nombre" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="contactoEmail">Email</label>
+          <input class="campo-input" type="email" id="contactoEmail" name="email" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="contactoAsunto">Asunto</label>
+          <input class="campo-input" type="text" id="contactoAsunto" name="asunto" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="contactoMensaje">Mensaje</label>
+          <textarea class="campo-input" id="contactoMensaje" name="mensaje" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enviar consulta</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="images/logo.png" alt="SirinGo"> SirinGo</div>
+        <p style="color:rgba(255,255,255,0.6)">Todo lo que buscás, en un solo lugar. Productos variados, modernos y llamativos.</p>
+        <div class="footer-redes">
+          <a href="https://www.instagram.com/siringo.desing?stkn=eTM2b3A2NzR1d2Vh" target="_blank" rel="noopener" class="btn-icon-only" aria-label="Instagram">📷</a>
+          <a href="https://wa.me/5492236946601" target="_blank" rel="noopener" class="btn-icon-only" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div>
+        <h4>Ayuda</h4>
+        <a href="#contacto">Contacto</a>
+        <a href="login.html">Iniciar sesión</a>
+        <a href="registro.html">Crear cuenta</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="https://wa.me/5492236946601" target="_blank" rel="noopener">+54 9 223 694 6601</a>
+        <a href="mailto:hola@siringo.com.ar">hola@siringo.com.ar</a>
+        <a href="#contacto">Mar del Plata, Buenos Aires</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SirinGo — Todo lo que buscás, en un solo lugar.</div>
+  </div>
+</footer>
+
+<!-- MODAL DETALLE DE PRODUCTO -->
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal-caja" style="position:relative;">
+    <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar">✕</button>
+    <div class="modal-producto-imagen" id="modalImagen"></div>
+    <div class="modal-producto-body">
+      <div class="modal-producto-meta">
+        <span class="chip" id="modalRubro"></span>
+      </div>
+      <h3 id="modalNombre"></h3>
+      <p>Marca: <strong id="modalMarca"></strong></p>
+      <p id="modalDescripcion"></p>
+      <div class="modal-producto-precio" id="modalPrecio"></div>
+      <div class="modal-producto-cantidad">
+        <div class="selector-cantidad">
+          <button type="button" id="modalRestarCantidad" aria-label="Restar">−</button>
+          <span id="modalCantidadValor">1</span>
+          <button type="button" id="modalSumarCantidad" aria-label="Sumar">+</button>
+        </div>
+      </div>
+      <div class="modal-producto-acciones">
+        <button class="btn btn-primary btn-block" id="modalAgregarCarrito">Agregar al carrito</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CARRITO (drawer lateral) -->
+<div class="carrito-overlay" id="carritoOverlay"></div>
+<aside class="carrito-panel" id="carritoPanel" aria-label="Carrito de compras">
+  <div class="carrito-header">
+    <h2>Tu carrito</h2>
+    <button class="modal-cerrar" id="cerrarCarrito" style="position:static;" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="carrito-lista" id="carritoLista"></div>
+  <div class="carrito-footer" id="carritoFooter" hidden>
+    <div class="carrito-fila-total"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
+    <div class="carrito-fila-total grande"><span>Total</span><span id="carritoTotal">$0</span></div>
+    <div class="carrito-acciones-footer">
+      <button class="btn btn-primary btn-block" id="btnFinalizarPedido">Finalizar compra</button>
+      <button class="btn btn-outline btn-block" id="btnSeguirComprando">Seguir comprando</button>
+      <button class="btn btn-ghost btn-block btn-sm" id="btnVaciarCarrito">Vaciar carrito</button>
+    </div>
+  </div>
+</aside>
+
+<a href="https://wa.me/5492236946601" target="_blank" rel="noopener" class="boton-whatsapp-flotante" aria-label="Escribinos por WhatsApp">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/productos.js"></script>
+</body>
+</html>

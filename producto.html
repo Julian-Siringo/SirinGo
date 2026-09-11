@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producto — SirinGo</title>
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=3">
+</head>
+<body>
+
+<div class="cinta-anuncios">
+  <div class="cinta-anuncios-track"></div>
+</div>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="SirinGo" class="logo-img">
+      Sirin<span class="logo-go">Go</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#catalogo">Catálogo</a>
+      <a href="index.html#contacto">Contacto</a>
+      <div class="nav-sesion nav-sesion-movil" data-zona-sesion></div>
+    </div>
+    <div class="nav-derecha">
+      <div class="nav-sesion" data-zona-sesion></div>
+      <button class="btn-icon-only carrito-boton" id="abrirCarrito" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="carrito-contador" id="carritoContador" hidden>0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="detalle-main">
+  <div class="contenedor">
+
+    <p class="detalle-migas" id="detalleMigas">
+      <a href="index.html">Inicio</a> / <a href="index.html#catalogo">Catálogo</a> / <span id="migaProducto">Producto</span>
+    </p>
+
+    <div id="detalleContenido" hidden>
+      <div class="detalle-grid">
+
+        <!-- galería -->
+        <div class="detalle-galeria">
+          <div class="detalle-imagen-principal" id="detalleImagenPrincipal">
+            <span class="etiqueta-2x1 detalle-etiqueta-2x1" id="detalleEtiqueta2x1" hidden>🔥 2X1</span>
+            <img id="detalleImagenActual" src="" alt="">
+            <video id="detalleVideoActual" controls playsinline preload="metadata" style="display:none;"></video>
+            <button type="button" class="detalle-flecha anterior" id="flechaAnterior" aria-label="Imagen anterior">‹</button>
+            <button type="button" class="detalle-flecha siguiente" id="flechaSiguiente" aria-label="Imagen siguiente">›</button>
+          </div>
+          <div class="detalle-miniaturas" id="detalleMiniaturas"></div>
+        </div>
+
+        <!-- info y compra -->
+        <div class="detalle-info">
+          <div class="detalle-valoracion">
+            <span class="detalle-estrellas" id="detalleEstrellas">★★★★★</span>
+            <span><strong id="detalleRating">4.9</strong>/5 · <span id="detalleReseñas">0</span> Clientes Satisfechos</span>
+          </div>
+
+          <div class="detalle-chips" id="detalleChips"></div>
+
+          <h1 class="detalle-titulo" id="detalleNombre"></h1>
+
+          <ul class="detalle-features" id="detalleFeatures"></ul>
+
+          <div class="detalle-colores" id="detalleColores" hidden></div>
+
+          <div class="detalle-separador" id="detalleSeparador">Elegí tu opción</div>
+
+          <div class="detalle-opciones" id="detalleOpciones"></div>
+
+          <p class="detalle-stock-aviso" id="detalleStockAviso"></p>
+
+          <div class="detalle-cta">
+            <button type="button" class="btn btn-primary btn-block" id="btnAgregarDetalle">Agregar al carrito</button>
+          </div>
+
+          <ul class="detalle-ventajas">
+            <li>🛡️ Compra 100% segura</li>
+            <li>🚚 Envío a todo el país</li>
+            <li>🔄 Cambios y devoluciones</li>
+            <li>💬 Soporte por WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p id="detalleNoEncontrado" hidden>No encontramos este producto. <a href="index.html#catalogo">Volvé al catálogo</a>.</p>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="contenedor">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="images/logo.png" alt="SirinGo"> SirinGo</div>
+        <p style="color:rgba(255,255,255,0.6)">Todo lo que buscás, en un solo lugar. Productos variados, modernos y llamativos.</p>
+        <div class="footer-redes">
+          <a href="https://www.instagram.com/siringo.desing?stkn=eTM2b3A2NzR1d2Vh" target="_blank" rel="noopener" class="btn-icon-only" aria-label="Instagram">📷</a>
+          <a href="https://wa.me/5492236946601" target="_blank" rel="noopener" class="btn-icon-only" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#catalogo">Catálogo</a>
+        <a href="index.html#contacto">Contacto</a>
+      </div>
+      <div>
+        <h4>Ayuda</h4>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="login.html">Iniciar sesión</a>
+        <a href="registro.html">Crear cuenta</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="https://wa.me/5492236946601" target="_blank" rel="noopener">+54 9 223 694 6601</a>
+        <a href="mailto:hola@siringo.com.ar">hola@siringo.com.ar</a>
+        <a href="index.html#contacto">Mar del Plata, Buenos Aires</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SirinGo — Todo lo que buscás, en un solo lugar.</div>
+  </div>
+</footer>
+
+<!-- CARRITO (drawer lateral) -->
+<div class="carrito-overlay" id="carritoOverlay"></div>
+<aside class="carrito-panel" id="carritoPanel" aria-label="Carrito de compras">
+  <div class="carrito-header">
+    <h2>Tu carrito</h2>
+    <button class="modal-cerrar" id="cerrarCarrito" style="position:static;" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="carrito-lista" id="carritoLista"></div>
+  <div class="carrito-footer" id="carritoFooter" hidden>
+    <div class="carrito-fila-total"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
+    <div class="carrito-fila-total grande"><span>Total</span><span id="carritoTotal">$0</span></div>
+    <div class="carrito-acciones-footer">
+      <button class="btn btn-primary btn-block" id="btnFinalizarPedido">Finalizar compra</button>
+      <button class="btn btn-outline btn-block" id="btnSeguirComprando">Seguir comprando</button>
+      <button class="btn btn-ghost btn-block btn-sm" id="btnVaciarCarrito">Vaciar carrito</button>
+    </div>
+  </div>
+</aside>
+
+<a href="https://wa.me/5492236946601" target="_blank" rel="noopener" class="boton-whatsapp-flotante" aria-label="Escribinos por WhatsApp">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/producto-detalle.js"></script>
+</body>
+</html>

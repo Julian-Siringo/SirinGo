@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión — SirinGo</title>
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=3">
+</head>
+<body>
+
+<div class="cinta-anuncios">
+  <div class="cinta-anuncios-track"></div>
+</div>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="SirinGo" class="logo-img">
+      Sirin<span class="logo-go">Go</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#inicio">Inicio</a>
+      <a href="index.html#catalogo">Catálogo</a>
+      <a href="index.html#contacto">Contacto</a>
+      <div class="nav-sesion nav-sesion-movil" data-zona-sesion></div>
+    </div>
+    <div class="nav-derecha">
+      <div class="nav-sesion" data-zona-sesion></div>
+    </div>
+  </nav>
+</header>
+
+<main class="franja-auth">
+  <div class="panel-form">
+    <h1>Iniciar sesión</h1>
+    <p class="subtitulo">Ingresá a tu cuenta de SirinGo.</p>
+
+    <div class="mensaje-form" id="mensajeLogin" hidden></div>
+
+    <form id="formLogin" novalidate>
+      <div class="campo-grupo">
+        <label for="loginEmail">Email</label>
+        <input class="campo-input" type="email" id="loginEmail" name="email" required autocomplete="email">
+      </div>
+      <div class="campo-grupo">
+        <label for="loginPassword">Contraseña</label>
+        <input class="campo-input" type="password" id="loginPassword" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+    </form>
+
+    <p class="enlace-secundario">¿No tenés una cuenta? <a href="registro.html">Registrate</a></p>
+  </div>
+</main>
+
+<footer class="site-footer" style="padding-top:0;">
+  <div class="contenedor footer-bottom">© 2026 SirinGo — Todo lo que buscás, en un solo lugar.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/data.js"></script>
+<script src="js/auth.js"></script>
+<script>redirigirSiYaLogueado(); inicializarFormularioLogin();</script>
+</body>
+</html>
