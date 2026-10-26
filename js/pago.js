@@ -11,9 +11,9 @@
 (() => {
   // Mismos datos que checkout.js — si los cambiás ahí, cambialos acá también.
   const DATOS_PAGO = {
-    alias: 'siringo.barberr',
+    alias: 'gmsinformatica',
     cvu: '0000003100058821898256',
-    titular: 'Julian Matín Siringo'
+    titular: 'Guillermo Matín Siringo'
   };
 
   const NUMERO_WHATSAPP = '5492236946601';
