@@ -13,7 +13,7 @@
   const DATOS_PAGO = {
     alias: 'gmsinformatica',
     cvu: '0000003100058821898256',
-    titular: 'Guillermo Matín Siringo'
+    titular: 'Guillermo Martín Siringo'
   };
 
   const NUMERO_WHATSAPP = '5492236946601';
